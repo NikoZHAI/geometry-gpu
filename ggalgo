@@ -1,0 +1,6 @@
+#pragma once
+
+
+// lexico-graphical comparaison
+#include "src/algorithm/CompareFunctors.h"
+#include "src/algorithm/lexicoCompare.h"

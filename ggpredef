@@ -1,0 +1,33 @@
+#pragma once
+
+/// @file Compiler macro specifications
+
+
+#if defined(__CUDACC__) // NVCC
+
+#   define GG_INLINE __forceinline__
+#   define GG_HOST_MEMBER_FUNCTION __host__
+#   define GG_DEVICE_MEMBER_FUNCTION __device__
+#   define GG_HOST_DEVICE_MEMBER_FUNCTION __host__ __device__
+#   define GG_HOST_FUNCTION __host__
+#   define GG_DEVICE_FUNCTION __device__
+#   define GG_HOST_DEVICE_FUNCTION __host__ __device__
+#   define GG_ALIGN(n) __align__(n)
+
+#else   // Host compiler
+
+#   define GG_INLINE inline
+#   define GG_HOST_MEMBER_FUNCTION
+#   define GG_DEVICE_MEMBER_FUNCTION
+#   define GG_HOST_DEVICE_MEMBER_FUNCTION
+#   define GG_HOST_FUNCTION
+#   define GG_DEVICE_FUNCTION
+#   define GG_HOST_DEVICE_FUNCTION
+
+#   if defined(__GNUC__) // GCC
+#       define GG_ALIGN(n) __attribute__((aligned(n)))
+#   elif defined(_MSC_VER) // MSVC
+#       define GG_ALIGN(n) __declspec(align(n))
+#   endif
+
+#endif
