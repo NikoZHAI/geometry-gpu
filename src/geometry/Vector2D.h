@@ -95,11 +95,11 @@ public:
     { y = val; return *this; }
 
     GG_HOST_DEVICE_MEMBER_FUNCTION
-    const FT& operator[]( Uint32 i ) const
+    const FT& operator[]( unsigned int i ) const
     { return i&1 ? y : x; }
     
     GG_HOST_DEVICE_MEMBER_FUNCTION
-    FT& operator[]( Uint32 i )
+    FT& operator[]( unsigned int i )
     { return i&1 ? y : x; }
 
     GG_HOST_DEVICE_MEMBER_FUNCTION

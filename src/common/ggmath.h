@@ -3,6 +3,14 @@
 
 #include "ggpredef"
 
+
+#ifdef __CUDACC__
+#else
+#   include <cmath>
+#   include <algorithm>
+#endif
+
+
 namespace gg
 {
 
@@ -47,12 +55,37 @@ float nextafter( float x, float y )
 { return nextafterf(x, y); }
 
 
+/////////////////////////////////////////////////
+// std::max(x, y) / std::min(x, y)             //
+//  Note that this is not fully portable since //
+//  C99 fmax() is not std::max(...)            //
+/////////////////////////////////////////////////
+GG_INLINE GG_DEVICE_FUNCTION
+float max( float x, float y )
+{ return fmaxf( x, y ); }
+
+GG_INLINE GG_DEVICE_FUNCTION
+double max( double x, double y )
+{ return fmax( x, y ); }
+
+GG_INLINE GG_DEVICE_FUNCTION
+float min( float x, float y )
+{ return fminf( x, y ); }
+
+GG_INLINE GG_DEVICE_FUNCTION
+double max( double x, double y )
+{ return fmin( x, y ); }
+
+
 #else
 
-#include <cmath>
+
 using std::isnormal;
 using std::atan2;
 using std::sqrt;
+using std::nextafter;
+using std::min;
+using std::max;
 
 #endif
 

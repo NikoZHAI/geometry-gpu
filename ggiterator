@@ -1,0 +1,32 @@
+#pragma once
+
+/// @file Compiler iterator wrappers
+
+#include "ggpredef"
+
+
+#if defined(__CUDACC__) // NVCC
+
+#include "thrust/iterator/iterator_traits.h"
+
+namespace gg
+{
+
+template <typename T>
+struct iterator_traits : thrust::iterator_traits<T> {};
+
+}
+
+
+#else
+
+#include <iterator>
+namespace gg
+{
+
+template <typename T>
+struct iterator_traits : std::iterator_traits<T> {};
+
+}
+
+#endif
