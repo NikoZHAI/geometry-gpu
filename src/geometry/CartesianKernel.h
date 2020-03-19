@@ -14,7 +14,7 @@ class CartesianKernel
 public:
 
     using FieldType     = FT;
-    using BooleanType   = BT;
+    using BooleanType    = BT;
     using Kernel        = CartesianKernel<FT, BT>;
     using Self          = Kernel;
 
